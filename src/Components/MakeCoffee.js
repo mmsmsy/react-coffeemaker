@@ -7,7 +7,6 @@ class MakeCoffee extends Component {
   constructor() {
     super();
     this.state = {
-      acceptableFormData: true,
       newCoffee: {}
     }
   }
@@ -17,33 +16,43 @@ class MakeCoffee extends Component {
     acceptedChars: /^[0-9a-zA-Z-\s]+$/
   }
 
-  handleChange = (event) => {
+  handleInputChange = (event) => {
     const elem = event.target;
     if (elem.value !== '') {
       if (elem.value.match(this.props.acceptedChars)) {
         $(elem)
           .removeClass('not-acceptable-form-data')
           .addClass('acceptable-form-data');
-
-        this.setState({acceptableFormData: true});
       } else {
         $(elem)
           .removeClass('acceptable-form-data')
           .addClass('not-acceptable-form-data');
-        
-        this.setState({acceptableFormData: false});
       }
     } else {
       $(elem).removeClass('acceptable-form-data not-acceptable-form-data');
-
-      this.setState({acceptableFormData: true});
     }
-    event.preventDefault();
+
+    if (this.refs.author.value === '' && this.refs.comment.value === '') {
+      $('.form-submit-button').removeClass('acceptable-form-data not-acceptable-form-data');
+      console.log('Empty or not filled');
+    } else {
+      if (!this.refs.author.value.match(this.props.acceptedChars) || !this.refs.comment.value.match(this.props.acceptedChars)) {
+        $('.form-submit-button')
+          .removeClass('acceptable-form-data')
+          .addClass('not-acceptable-form-data');
+        console.log('Does not match');
+      } else {
+        $('.form-submit-button')
+          .removeClass('not-acceptable-form-data')
+          .addClass('acceptable-form-data');
+        console.log('Matches');
+      }
+    }
   }
 
   handleSubmit = (event) => {
 
-    if (this.refs.author.value === '' || this.refs.comment.value === '') alert ('All fields are required');
+    if (this.refs.author.value === '' || this.refs.comment.value === '') alert ('All fields are required.');
     else {
       if (this.refs.author.value.match(this.props.acceptedChars) && this.refs.comment.value.match(this.props.acceptedChars)) {
         this.setState({newCoffee:{
@@ -56,7 +65,7 @@ class MakeCoffee extends Component {
         }}, function() {
           this.props.makeCoffee(this.state.newCoffee);
         });
-      } else alert ('Only alphanumeric values, please');
+      } else alert ('Only alphanumeric values, please.');
     }
     event.preventDefault();
   }
@@ -70,7 +79,7 @@ class MakeCoffee extends Component {
       <form className='coffee-machine-form' onSubmit={this.handleSubmit}>
         <label>
           <span>Author</span>
-          <input type='text' ref='author' onChange={this.handleChange} />
+          <input type='text' ref='author' onChange={this.handleInputChange} />
         </label>
         <label>
           <span>Coffee type</span>
@@ -88,9 +97,9 @@ class MakeCoffee extends Component {
         </label>
         <label>
           <span>Comment</span>
-          <input type='text' ref='comment' onChange={this.handleChange} />
+          <input type='text' ref='comment' onChange={this.handleInputChange} />
         </label>
-        <input type='submit' value='Submit' className='form-submit-button' />
+        <input className='form-submit-button' type='submit' value='Submit' />
       </form>
     );
   }

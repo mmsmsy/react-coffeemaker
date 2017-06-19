@@ -60,13 +60,24 @@ body {
   .coffee-machine-form select {
     text-align-last: center; }
   .coffee-machine-form .form-submit-button {
-    background: #5cab40;
-    color: white;
+    background: white;
+    color: black;
     padding: 0.5rem;
     border: 0.01rem solid #2a790e;
     margin-top: 2rem; }
   .coffee-machine-form .form-submit-button:hover {
-    background: #2a790e; }
+    background: #2a790e;
+    color: white; }
+  .coffee-machine-form .acceptable-form-data {
+    background: #5cab40;
+    color: white; }
+  .coffee-machine-form .acceptable-form-data:hover {
+    background: #439227; }
+  .coffee-machine-form .not-acceptable-form-data {
+    background: #d9534f;
+    color: white; }
+  .coffee-machine-form .not-acceptable-form-data:hover {
+    background: #c03a36; }
 
 .coffee-log {
   display: flex;
@@ -81,14 +92,6 @@ body {
 
 .italic {
   font-style: italic; }
-
-.acceptable-form-data {
-  background: #5cab40;
-  color: white; }
-
-.not-acceptable-form-data {
-  background: #d9534f;
-  color: white; }
 
 @media only screen and (min-width: 750px) {
   .coffee-machine-form label {

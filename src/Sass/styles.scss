@@ -72,14 +72,29 @@ body {
     text-align-last: center;
   }
   .form-submit-button {
-    background: #5cab40;
-    color: white;
+    background: white;
+    color: black;
     padding: 0.5rem;
     border: 0.01rem solid #5cab40 - 50;
     margin-top: 2rem;
   }
   .form-submit-button:hover {
     background: #5cab40 - 50;
+    color: white;
+  }
+  .acceptable-form-data {
+    background: #5cab40;
+    color: white;
+  }
+  .acceptable-form-data:hover {
+    background: #5cab40 - 25;
+  }
+  .not-acceptable-form-data {
+    background: #d9534f;
+    color: white;
+  }
+  .not-acceptable-form-data:hover {
+    background: #d9534f - 25;
   }
 }
 .coffee-log {
@@ -98,14 +113,6 @@ body {
 }
 .italic {
   font-style: italic;
-}
-.acceptable-form-data {
-  background: #5cab40;
-  color: white;
-}
-.not-acceptable-form-data {
-  background: #d9534f;
-  color: white;
 }
 @media only screen and (min-width: 750px) {
   .coffee-machine-form {
