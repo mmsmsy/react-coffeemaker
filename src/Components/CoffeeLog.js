@@ -32,7 +32,8 @@ class CoffeeLog extends Component {
 }
 
 CoffeeLog.propTypes = {
-  coffees: PropTypes.array
+  coffees: PropTypes.array,
+  deleteCoffee: PropTypes.func
 }
 
 export default CoffeeLog;

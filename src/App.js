@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {
       coffees: [
         {
-          id: uuid(),
+          id: uuid.v4(),
           author: 'Annwumy',
           coffeeType: 'Capuccino',
           sugar: true,

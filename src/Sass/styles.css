@@ -40,11 +40,23 @@ body {
     outline: 0;
     border: 0.01rem solid #ccc;
     transition: all 0.2s; }
+  .coffee-machine-form select {
+    background: #5cab40;
+    color: white; }
+  .coffee-machine-form option {
+    color: white;
+    background: #5cab40; }
   .coffee-machine-form input[type=checkbox] {
-    border: 1rem solid black; }
-  .coffee-machine-form input:focus,
-  .coffee-machine-form select:focus {
+    padding: 1rem;
+    outline: 0.01rem solid #eee; }
+  .coffee-machine-form input[type=checkbox]:focus {
+    outline: 0.01rem solid black; }
+  .coffee-machine-form input:focus {
     border: 0.01rem solid black; }
+  .coffee-machine-form select:focus {
+    background: #439227;
+    border-radius: 1rem 1rem 0 0;
+    border-bottom: 0; }
   .coffee-machine-form select {
     text-align-last: center; }
   .coffee-machine-form .form-submit-button {
@@ -69,6 +81,14 @@ body {
 
 .italic {
   font-style: italic; }
+
+.acceptable-form-data {
+  background: #5cab40;
+  color: white; }
+
+.not-acceptable-form-data {
+  background: #d9534f;
+  color: white; }
 
 @media only screen and (min-width: 750px) {
   .coffee-machine-form label {

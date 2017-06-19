@@ -26,7 +26,7 @@ body {
   }
   span,
   input,
-  select {
+  select{
     display: block;
     width: 50%;
     font-size: 1.5rem;
@@ -45,12 +45,28 @@ body {
     border: 0.01rem solid #ccc;
     transition: all 0.2s;
   }
-  input[type=checkbox] {
-    border: 1rem solid black;
+  select {
+    background: #5cab40;
+    color: white;
   }
-  input:focus,
-  select:focus {
+  option {
+    color: white;
+    background: #5cab40;
+  }
+  input[type=checkbox] {
+    padding: 1rem;
+    outline: 0.01rem solid #eee;
+  }
+  input[type=checkbox]:focus {
+    outline: 0.01rem solid black;
+  }
+  input:focus {
     border: 0.01rem solid black;
+  }
+  select:focus {
+    background: #5cab40 - 25;
+    border-radius: 1rem 1rem 0 0;
+    border-bottom: 0;
   }
   select {
     text-align-last: center;
@@ -82,6 +98,14 @@ body {
 }
 .italic {
   font-style: italic;
+}
+.acceptable-form-data {
+  background: #5cab40;
+  color: white;
+}
+.not-acceptable-form-data {
+  background: #d9534f;
+  color: white;
 }
 @media only screen and (min-width: 750px) {
   .coffee-machine-form {
