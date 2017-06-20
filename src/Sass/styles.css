@@ -23,6 +23,7 @@ body {
     width: 100%;
     margin: 0.2rem; }
   .coffee-machine-form span,
+  .coffee-machine-form .span.input,
   .coffee-machine-form input,
   .coffee-machine-form select {
     display: block;
@@ -31,10 +32,28 @@ body {
     text-align: center;
     padding: 0;
     border: 0;
-    border-radius: 1rem; }
+    border-radius: 0.4rem; }
   .coffee-machine-form span {
     text-align: left;
     padding: 0.3rem 0; }
+  .coffee-machine-form .span-input {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    position: relative; }
+    .coffee-machine-form .span-input input {
+      width: 100%; }
+  .coffee-machine-form .button-clear-input {
+    height: 100%;
+    outline: 0;
+    border: 0.01rem solid black;
+    border-radius: 0.4rem;
+    position: absolute;
+    right: 0;
+    background: #5cab40;
+    color: white;
+    cursor: pointer;
+    font-size: 2rem; }
   .coffee-machine-form input,
   .coffee-machine-form select {
     outline: 0;
@@ -84,7 +103,11 @@ body {
   flex-direction: column;
   align-items: center;
   list-style: none; }
+  .coffee-log h3 {
+    text-transform: uppercase;
+    margin: 0 0 1rem 0; }
   .coffee-log li {
+    text-align: center;
     border-bottom: 0.01rem solid black;
     margin: 0.2rem 0; }
   .coffee-log button {
@@ -92,6 +115,11 @@ body {
 
 .italic {
   font-style: italic; }
+
+hr {
+  width: 100%;
+  border-top: 0.01rem solid gray;
+  margin: 4rem 0; }
 
 @media only screen and (min-width: 750px) {
   .coffee-machine-form label {

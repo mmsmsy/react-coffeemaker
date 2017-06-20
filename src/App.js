@@ -7,17 +7,53 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      coffees: [
-        {
-          id: uuid.v4(),
-          author: 'Annwumy',
-          coffeeType: 'Capuccino',
-          sugar: true,
-          milk: true,
-          comment: '<Me> time with capuccino'
-        }
-      ]
+      coffees: []
     }
+  }
+
+  getCoffeesMade = () => {
+    this.setState({coffees: [
+      {
+        id: uuid.v4(),
+        author: 'Annwumy',
+        kind: 'Cappuccino',
+        sugar: false,
+        milk: false,
+        size: 'Medium',
+        comment: '<Me> time with capuccino.'
+      },
+      {
+        id: uuid.v4(),
+        author: 'mmsmsy',
+        kind: 'Americano',
+        sugar: false,
+        milk: false,
+        size: 'Small',
+        comment: 'Simple.'
+      },
+      {
+        id: uuid.v4(),
+        author: 'Sugar Crush',
+        kind: 'Macchiato',
+        sugar: true,
+        milk: false,
+        size: 'Medium',
+        comment: "Can't stand the taste of coffee."
+      },
+      {
+        id: uuid.v4(),
+        author: 'The Big Gulp',
+        kind: 'Frappe',
+        sugar: true,
+        milk: true,
+        size: 'Large',
+        comment: "I'm all for healthy lifestyle, though. Just not now."
+      }
+    ]});
+  }
+
+  componentDidMount() {
+    this.getCoffeesMade();
   }
 
   handleDeleteCoffee = (id) => {
@@ -37,6 +73,7 @@ class App extends Component {
     return (
       <div className='coffee-machine'>
         <MakeCoffee makeCoffee={this.handleMakeCoffee} />
+        <hr />
         <CoffeeLog coffees={this.state.coffees} deleteCoffee={this.handleDeleteCoffee} />
       </div>
     );

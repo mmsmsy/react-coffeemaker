@@ -12,7 +12,8 @@ class MakeCoffee extends Component {
   }
 
   static defaultProps = {
-    coffeeTypes: ['Capuccino','Frappe','Machiatto','Americano'],
+    kinds: ['Cappuccino','Frappe','Macchiato','Americano'],
+    sizes: ['Small','Medium','Large'],
     acceptedChars: /^[0-9a-zA-Z-\s]+$/
   }
 
@@ -34,33 +35,41 @@ class MakeCoffee extends Component {
 
     if (this.refs.author.value === '' && this.refs.comment.value === '') {
       $('.form-submit-button').removeClass('acceptable-form-data not-acceptable-form-data');
-      console.log('Empty or not filled');
     } else {
       if (!this.refs.author.value.match(this.props.acceptedChars) || !this.refs.comment.value.match(this.props.acceptedChars)) {
         $('.form-submit-button')
           .removeClass('acceptable-form-data')
           .addClass('not-acceptable-form-data');
-        console.log('Does not match');
       } else {
         $('.form-submit-button')
           .removeClass('not-acceptable-form-data')
           .addClass('acceptable-form-data');
-        console.log('Matches');
       }
     }
   }
 
-  handleSubmit = (event) => {
+  clearAuthorInput = (event) => {
+    this.refs.author.value = '';
+    this.handleInputChange(event);
+    event.preventDefault();
+  }
+  clearCommentInput = (event) => {
+    this.refs.comment.value = '';
+    this.handleInputChange(event);
+    event.preventDefault();
+  }
 
+  handleSubmit = (event) => {
     if (this.refs.author.value === '' || this.refs.comment.value === '') alert ('All fields are required.');
     else {
       if (this.refs.author.value.match(this.props.acceptedChars) && this.refs.comment.value.match(this.props.acceptedChars)) {
         this.setState({newCoffee:{
           id: uuid.v4(),
           author: this.refs.author.value,
-          coffeeType: this.refs.coffeeType.value,
+          kind: this.refs.kind.value,
           sugar: this.refs.sugar.checked,
           milk: this.refs.milk.checked,
+          size: this.refs.size.value,
           comment: this.refs.comment.value
         }}, function() {
           this.props.makeCoffee(this.state.newCoffee);
@@ -71,20 +80,26 @@ class MakeCoffee extends Component {
   }
 
   render() {
-    const coffeeTypesOptions = this.props.coffeeTypes.map(coffeeType => {
-      return <option key={coffeeType} value={coffeeType}>{coffeeType}</option>
+    const coffeeKindOptions = this.props.kinds.map(kind => {
+      return <option key={kind} value={kind}>{kind}</option>
+    });
+    const coffeeSizeOptions = this.props.sizes.map(size => {
+      return <option key={size} value={size}>{size}</option>
     });
 
     return (
       <form className='coffee-machine-form' onSubmit={this.handleSubmit}>
         <label>
           <span>Author</span>
-          <input type='text' ref='author' onChange={this.handleInputChange} />
+          <span className='span-input'>
+            <input type='text' ref='author' maxLength='18' onChange={this.handleInputChange} />
+            <button className='button-clear-input' title='Clear' onClick={this.clearAuthorInput}>X</button>
+          </span>
         </label>
         <label>
-          <span>Coffee type</span>
-          <select ref='coffeeType'>
-            {coffeeTypesOptions}
+          <span>Coffee kind</span>
+          <select ref='kind'>
+            {coffeeKindOptions}
           </select>
         </label>
         <label>
@@ -96,8 +111,17 @@ class MakeCoffee extends Component {
           <input type='checkbox' ref='milk' />
         </label>
         <label>
+          <span>Coffee size</span>
+          <select ref='size'>
+            {coffeeSizeOptions}
+          </select>
+        </label>
+        <label>
           <span>Comment</span>
-          <input type='text' ref='comment' onChange={this.handleInputChange} />
+          <span className='span-input'>
+            <input type='text' ref='comment' maxLength='140' onChange={this.handleInputChange} />
+            <button className='button-clear-input' title='Clear' onClick={this.clearCommentInput}>X</button>
+          </span>
         </label>
         <input className='form-submit-button' type='submit' value='Submit' />
       </form>
@@ -106,7 +130,8 @@ class MakeCoffee extends Component {
 }
 
 MakeCoffee.propTypes = {
-  coffeeTypes: propTypes.array,
+  kinds: propTypes.array,
+  sizes: propTypes.array,
   makeCoffee: propTypes.func
 }
 

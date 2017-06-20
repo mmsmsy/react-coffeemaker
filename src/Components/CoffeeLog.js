@@ -13,10 +13,11 @@ class CoffeeLog extends Component {
         return (
           <li key={index} className="coffee-item">
             <strong>
-              {coffee.coffeeType}
+              {coffee.kind}
               {coffee.sugar ? ' with sugar' : ''}
               {(coffee.milk && coffee.sugar) ? ' and milk' : (coffee.milk ? ' with milk' : '')}
-            </strong> - <span className="italic">"{coffee.comment}"</span>, by {coffee.author}
+              , {coffee.size} -
+            </strong> <span className="italic">"{coffee.comment}"</span>, by {coffee.author}
             <button title="Delete this coffee log" onClick={this.deleteItself.bind(this, coffee.id)}>X</button>
           </li>
         );
